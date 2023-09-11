@@ -21,14 +21,20 @@ jxRequirements:
     enabled: false
     schedule: ""
   cluster:
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
+    clusterName: tf-jx-willing-marmoset
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
     gitKind: github
     gitName: github
     gitServer: https://github.com
+    gke:
+      projectNumber: "746866976253"
+    project: arched-backup-398010
     provider: gke
     registry: gcr.io
+    zone: us-central1-a
   environments:
   - key: dev
   - key: staging
@@ -40,10 +46,25 @@ jxRequirements:
     tls:
       email: ""
       enabled: false
-      production: false
+      production: true
+  pipelineUser:
+    username: mani-bot9
   repository: nexus
   secretStorage: vault
-  vault: {}
+  storage:
+  - name: logs
+    url: gs://logs-tf-jx-willing-marmoset-5ef4cd35c88f
+  - name: reports
+    url: gs://reports-tf-jx-willing-marmoset-5ef4cd35c88f
+  - name: repository
+    url: gs://repository-tf-jx-willing-marmoset-5ef4cd35c88f
+  terraformVault: true
+  vault:
+    bucket: vault-tf-jx-willing-marmoset-5ef4cd35c88f
+    key: crypto-key-tf-jx-willing-marmoset-5ef4cd35c88f
+    keyring: keyring-tf-jx-willing-marmoset-5ef4cd35c88f
+    name: tf-jx-willing-marmoset
+    serviceAccount: tf-jx-willing-marmoset-vt
   webhook: lighthouse
 jxRequirementsIngressExternalDNS:
   enabled: false
